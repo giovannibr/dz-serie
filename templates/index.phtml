@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css">
+
+        <title>DZ Série</title>
+    </head>
+    <body>
+        <main>
+            <div class="container-fluid">
+
+                <h1 class="text-center text-uppercase alert alert-primary">DZ Série</h1>
+
+                <form id="form" action="/result" method="POST">
+
+                    <section id="welcome" class="jumbotron quiz-section">
+                        <h2 class="display-4">Em um dia, que série melhor representa você?</h2>
+                        <p class="lead">Responda o quiz que diz que série de TV você é baseado em como você age em algumas situações do dia-a-dia.</p>
+                        <hr class="my-4">
+                        <p>Clique no botão abaixo para iniciar o quiz.</p>
+                        <a id="quiz-start" class="btn btn-primary btn-lg" href="#" role="button">Começar</a>
+                    </section>
+
+                    <?php $keys = ['a','b','c','d','e']; ?>
+                    <?php foreach ($questions as $i => $question) : ?>
+                        <?php shuffle($keys); ?>
+                        <section id="question_<?php echo $i; ?>" class="jumbotron quiz-section js-quiz-question d-none waiting">
+
+                            <p class="lead">
+                                <?php echo $question['question']; ?>
+                            </p>
+
+                            <?php foreach ($keys as $key) : ?>
+                                <?php $answer = $question['answers'][$key]; ?>
+                                <?php $id = 'question_' . $i . '-' . $key; ?>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="question_<?php echo $i; ?>" id="<?php echo $id; ?>" value="<?php echo $key; ?>">
+                                        <label class="form-check-label" for="<?php echo $id; ?>">
+                                            <?php echo $answer; ?>
+                                        </label>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+
+                            <?php if ($i + 1 < $totalQuestions) : ?>
+                                <button type="button" class="btn btn-primary js-next">Próxima</button>
+                            <?php else : ?>
+                                <button id="quiz-submit" type="submit" class="btn btn-primary">Finalizar</button>
+                            <?php endif; ?>
+
+                        </section>
+                    <?php endforeach; ?>
+
+                </form>
+
+                <div id="result"></div>
+            </div>
+
+        </main>
+
+        <div id="loading-alert" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Analisando ...
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="error-alert" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Você deve selecionar uma resposta para continuar.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+        <script src="/js/functions.js" type="text/javascript"></script>
+    </body>
+</html>
