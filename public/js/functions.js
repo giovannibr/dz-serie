@@ -12,8 +12,8 @@ function changeSection(currentElem, nextElement) {
 			$(currentElem).addClass('d-none');
 			$(nextElement).removeClass('d-none');
 			setTimeout(function () { $(nextElement).removeClass('waiting'); }, 10);
-			setTimeout(function () { animating = false; }, 500);
-		}, 500);
+			setTimeout(function () { animating = false; }, 600);
+		}, 600);
 
 		return true;
 	} else {
@@ -35,7 +35,7 @@ $(function() {
 
 	$('#quiz-start').on('click', function(e) {
 		e.preventDefault();
-		
+
 		changeSection($('#welcome'), $('#question_0'));
 	});
 
