@@ -2,20 +2,20 @@
 
 Um quiz que diz que série de TV você é baseado em como você age em algumas situações do dia-a- dia.
 
+## Pré-requisitos
+É necessária a utilização do [Composer](https://getcomposer.org/) para instalação.
+
 ## Instalação
-```
-composer install
+```bash
+$ composer install
 ```
 ## Execução
-
-### Método 1
+Você pode usar o servidor integrado do PHP utilizando o comando:
+```
+php -S localhost:8080
+```
+Ou pode usar o script já configurado (que irá executar a mesma operação)
 ```
 composer start
 ```
-### Método 2
-```
-php -S localhost:8080 -t public
-```
-### Método 3
-Independende do servidor PHP, basta rodar apontando para a pasta "public"
-
+E você poderá visualizar a aplicação rodando em http://localhost:8080
